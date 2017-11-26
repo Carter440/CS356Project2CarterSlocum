@@ -9,8 +9,10 @@ public class Group implements Component {
 	private String ID;
 	private Component parent = null;
 	private List<Component> members = new LinkedList<>();
+	private long creationTime;
 	public Group(String id) {
 		ID = id;
+		creationTime = System.currentTimeMillis();
 	}
 	public void setParent(Component par){
 		parent = par;
@@ -69,5 +71,8 @@ public class Group implements Component {
 			if(use != null) return use;
 		}
 		return null;
+	}
+	public long getCreationTime(){
+		return creationTime;
 	}
 }

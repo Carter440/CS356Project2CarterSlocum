@@ -98,10 +98,39 @@ public class AdminFrame {
 		    	f.setVisible(true);
 		    }  
 		});
+		JButton uniques = new JButton("Verify Uniqueness");
+		uniques.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				IsUniqueVisitor uniqueChecker = new IsUniqueVisitor();
+				ac.getRoot().acceptVisitor(uniqueChecker);
+		    	JFrame f = new JFrame();
+		    	JLabel l;
+		    	if(uniqueChecker.getUnique()){
+		    		l = new JLabel("All users and Groups are Unique!");
+		    	}else{
+		    		l = new JLabel("Users and Groups are not Unique!");
+		    	}
+		    	f.add(l);
+		    	f.setSize(100,100);
+		    	f.setVisible(true);
+			}
+		});
+		JButton latest = new JButton("Last Updated User");
+		latest.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				LastUpdatedVisitor lastChecker = new LastUpdatedVisitor();
+				ac.getRoot().acceptVisitor(lastChecker);
+		    	JFrame f = new JFrame();
+		    	JLabel l = new JLabel(lastChecker.getLast());
+		    	f.add(l);
+		    	f.setSize(100,100);
+		    	f.setVisible(true);
+			}
+		});
 		tree.setLayout(new GridLayout(1,1));
-		opps.add(countu); opps.add(countg); opps.add(countm); opps.add(countp);
+		opps.add(countu); opps.add(countg); opps.add(countm); opps.add(countp); opps.add(uniques); opps.add(latest);
 		addug.setLayout(new GridLayout(2,2));
-		opps.setLayout(new GridLayout(2,2));
+		opps.setLayout(new GridLayout(3,2));
 		uview.setLayout(new GridLayout(1,1));
 		butts.add(addug); butts.add(uview); butts.add(opps);
 		butts.setLayout(new GridLayout(3,1));

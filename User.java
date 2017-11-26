@@ -11,10 +11,12 @@ public class User extends Subject implements Component, Observer {
 	private Component parent;
 	private Component ROOT;
 	private String newMessage;
+	private long creationTime;
 	public User(String id, Component root){
 		ID = id;
 		ROOT = root;
 		following.add(id);
+		creationTime = System.currentTimeMillis();
 		this.follows(this, id);
 	}
 	public void setParent(Component par){
@@ -84,6 +86,9 @@ public class User extends Subject implements Component, Observer {
 	}
 	public List<String> getFollowing(){
 		return following;
+	}
+	public long getCreationTime(){
+		return creationTime;
 	}
 
 }
